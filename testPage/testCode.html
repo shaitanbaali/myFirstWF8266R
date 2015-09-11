@@ -13,38 +13,38 @@
 
         <script>
             document.addEventListener('wf8266r-ready', function (e) {
-                console.log(e.detail); //確定 ESP8266 區網IP
-                //示範 透過程式操作 GPIO
-                //ADC 類比腳位讀取
+                console.log(e.detail); //確定 ESP8266 區網IP // determine ESP8266 area network IP
+                //示範 透過程式操作 GPIO // Demonstration operation GPIO through program
+                //ADC 類比腳位讀取 // ADC analog pin
                 GPIO.adc(function(data){
                     console.log(data);
                 });
-                //Read 數位腳位讀取
+                //Read 數位腳位讀取 // Read digit pin
                 GPIO.read(5, function(data){
                     console.log(data);
                 });
-                //PWM 類比輸出 0~1023
+                //PWM 類比輸出 0~1023 // PWM analog output of 0 to 1023
                 GPIO.pwm(2, 500, function(data){
                     console.log(data);
                 });
             }, false);
-            //獲取 ADC 回傳的值
+            //獲取 ADC 回傳的值 // Get 'ADC' return value
             document.addEventListener('wf8266r-adcMessage',function(e){
                 console.log(e.detail);
             });
-            //獲取 Read 回傳的值
+            //獲取 Read 回傳的值 // Get 'Read' return value
             document.addEventListener('wf8266r-readMessage',function(e){
                 console.log(e.detail);
             });   
             $(function () {
-                //當網頁載入完畢要做的事情
+                //當網頁載入完畢要做的事情 // When the page load is complete do GPIO.init ();
                 GPIO.init();
             });
         </script>
     </head>
     <body>
 
-        <!-- 透過 TAG 設置相關操作參數 -->
+        <!-- 透過 TAG 設置相關操作參數 - Set the relevant operating parameters via TAG--> 
         <unu-wf8266r ip="192.168.4.1" websocket uuid="" device="10914115"></unu-wf8266r>
         <wf8266r-button id="gpio5" type="read" pin="5" value="0" watch="2000">PIND1 </wf8266r-button>
         <wf8266r-button id="adc" type="adc" value="200" watch="1000">ADC </wf8266r-button>
