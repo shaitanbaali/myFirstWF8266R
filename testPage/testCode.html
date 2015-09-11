@@ -1,0 +1,67 @@
+    <!doctype html>
+    <html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+        <title>WF8266R Web Component</title>
+
+        <!-- Imports WF8266R -->
+        <script src="assets/jquery-2.1.4.min.js"></script>
+        <script src="assets/wf8266r.js"></script>
+        <link href="assets/wf8266r.css" rel="stylesheet" />
+
+        <script>
+            document.addEventListener('wf8266r-ready', function (e) {
+                console.log(e.detail); //確定 ESP8266 區網IP
+                //示範 透過程式操作 GPIO
+                //ADC 類比腳位讀取
+                GPIO.adc(function(data){
+                    console.log(data);
+                });
+                //Read 數位腳位讀取
+                GPIO.read(5, function(data){
+                    console.log(data);
+                });
+                //PWM 類比輸出 0~1023
+                GPIO.pwm(2, 500, function(data){
+                    console.log(data);
+                });
+            }, false);
+            //獲取 ADC 回傳的值
+            document.addEventListener('wf8266r-adcMessage',function(e){
+                console.log(e.detail);
+            });
+            //獲取 Read 回傳的值
+            document.addEventListener('wf8266r-readMessage',function(e){
+                console.log(e.detail);
+            });   
+            $(function () {
+                //當網頁載入完畢要做的事情
+                GPIO.init();
+            });
+        </script>
+    </head>
+    <body>
+
+        <!-- 透過 TAG 設置相關操作參數 -->
+        <unu-wf8266r ip="192.168.4.1" websocket uuid="" device="10914115"></unu-wf8266r>
+        <wf8266r-button id="gpio5" type="read" pin="5" value="0" watch="2000">PIND1 </wf8266r-button>
+        <wf8266r-button id="adc" type="adc" value="200" watch="1000">ADC </wf8266r-button>
+        <br/>
+        <wf8266r-button id="LED" type="pwm" pin="2" value="0">PIND4 PWM</wf8266r-button>
+        <br/>
+
+        <wf8266r-button type="gpio" pin="5" value="1">PIND1 ON</wf8266r-button>
+        <wf8266r-button type="gpio" pin="5" value="0">PIND1 OFF</wf8266r-button>
+        <br/>
+        <wf8266r-button type="gpio" pin="4" value="1">PIND2 ON</wf8266r-button>
+        <wf8266r-button type="gpio" pin="4" value="0">PIND2 OFF</wf8266r-button>
+        <br/>
+        <wf8266r-button type="gpio" pin="12" value="1">PIND6 ON</wf8266r-button>
+        <wf8266r-button type="gpio" pin="12" value="0">PIND6 OFF</wf8266r-button>
+        <br/>
+        <wf8266r-button type="gpio" pin="13" value="1">PIND7 ON</wf8266r-button>
+        <wf8266r-button type="gpio" pin="13" value="0">PIND7 OFF</wf8266r-button>
+    </body>
+    </html>
