@@ -18,7 +18,7 @@ http://192.168.4.1/user/get
 3.- Play with the example code 
 (replace in testCode.html the Device ID)
 
-<unu-wf8266r ip="192.168.4.1" websocket uuid="" device="10914115"></unu-wf8266r>
+unu-wf8266r ip="192.168.4.1" websocket uuid="" device="10914115"
 
 4.- enjoy!
 
