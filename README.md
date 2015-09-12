@@ -5,6 +5,14 @@ You need an ESP8266 with WF8266R firmware
 
 http://code.unumobile.com/wf8266r/
 
+A Document that I made explaining how to download and flash the WF8266R firmware on OSX and start playing with this GitHub code. 
+
+https://dl.dropboxusercontent.com/u/20649035/WF8266RforESP8266.pdf
+
+For windows users, the instructions on how to flash are here (thanks to zeroday)
+
+https://github.com/nodemcu/nodemcu-flasher
+
 USAGE:
 
 1.- Connect to AP UNU-WF8266R-XXXX (no password)
